@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import br.com.alura.forum.repository.UsuarioRepository;
+import io.micrometer.core.ipc.http.HttpSender.Method;
 
 @EnableWebSecurity
 @Configuration
@@ -55,6 +56,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	// Configurações de recursos estaticos(js, css, imagens, etc.)
 	@Override
 	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**",
+				"/swagger-resources/**");
 	}
 
 //	public static void main(String[] args) {
